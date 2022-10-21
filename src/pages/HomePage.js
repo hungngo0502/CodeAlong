@@ -86,7 +86,7 @@ function HomePage() {
 function applyFilter(products, filters) {
   const { sortBy } = filters;
   let filteredProducts = products;
-
+  console.log(filters);
   // SORT BY
   if (sortBy === "featured") {
     filteredProducts = orderBy(products, ["sold"], ["desc"]);
@@ -107,11 +107,13 @@ function applyFilter(products, filters) {
       filters.gender.includes(product.gender)
     );
   }
+  // console.log(filters);
   if (filters.category !== "All") {
     filteredProducts = products.filter(
       (product) => product.category === filters.category
     );
   }
+
   if (filters.priceRange) {
     filteredProducts = products.filter((product) => {
       if (filters.priceRange === "below") {
