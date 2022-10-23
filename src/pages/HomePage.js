@@ -16,7 +16,7 @@ function HomePage() {
   const [error, setError] = useState("");
 
   const defaultValues = {
-    gender: [],
+    gender: "",
     category: "All",
     priceRange: "",
     sortBy: "featured",
@@ -86,7 +86,8 @@ function HomePage() {
 function applyFilter(products, filters) {
   const { sortBy } = filters;
   let filteredProducts = products;
-  console.log(filters);
+  // console.log(filters);
+
   // SORT BY
   if (sortBy === "featured") {
     filteredProducts = orderBy(products, ["sold"], ["desc"]);
@@ -102,12 +103,13 @@ function applyFilter(products, filters) {
   }
 
   // FILTER PRODUCTS
-  if (filters.gender.length > 0) {
+  if (filters.gender > 0) {
     filteredProducts = products.filter((product) =>
       filters.gender.includes(product.gender)
     );
   }
   // console.log(filters);
+  console.log(filters.gender);
   if (filters.category !== "All") {
     filteredProducts = products.filter(
       (product) => product.category === filters.category
